@@ -1,12 +1,15 @@
-import eslintPluginReact from 'eslint-plugin-react'
-import eslintPluginReactNative from 'eslint-plugin-react-native'
+// eslint.config.js
+import js from '@eslint/js'
+import react from 'eslint-plugin-react'
+import reactNative from 'eslint-plugin-react-native'
 import babelParser from '@babel/eslint-parser'
 
 export default [
+  js.configs.recommended,
   {
     plugins: {
-      react: eslintPluginReact,
-      'react-native': eslintPluginReactNative,
+      react,
+      'react-native': reactNative,
     },
     settings: {
       react: {
@@ -14,19 +17,13 @@ export default [
       },
     },
     languageOptions: {
-      parser: babelParser,
+      parser: babelParser, // Tässä määritetään babelParser, joka osaa käsitellä JSX:ää
       parserOptions: {
-        requireConfigFile: false,
-      },
-      parserOptions: {
-        requireConfigFile: false, // usein tarpeen @babel/eslint-parser kanssa
-      },
-      globals: {
-        'react-native/react-native': true,
+        requireConfigFile: false, // Tämä varmistaa, että Babel ei vaadi erillistä konfiguraatiotiedostoa
       },
     },
     rules: {
-      ...eslintPluginReact.configs.recommended.rules, // react recommended -säännöt
+      ...react.configs.recommended.rules,
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
     },
