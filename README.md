@@ -1,1 +1,1 @@
-project from fullstackopen course-10 on react native
+project from fullstackopen courses part10 on react native
